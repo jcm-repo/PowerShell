@@ -10,14 +10,34 @@
     
     .USAGE
         Run, or schedule, the report on a Remote Desktop license server.
+    
+    .PARAMETERS
+        -MailFrom
+            Specify the email address from which the email notifications will be sent.
+
+        -MailTo
+            Specify the email address to which the report will be sent.
+
+        -MailSubject
+            Specify the email subject.
+
+        -MailServer
+            Specify an IP address or DNS name for your SMTP server.
 #>
 
 #region Set Initial Variables
 
-    $MailFrom    = 'RD Licensing <support@company.com>'
-    $MailTo      = 'support@company.com'
-    $MailSubject = 'Remote Desktop Licensing Report'
-    $MailServer  = 'smtp.company.co.za'
+    [CmdletBinding()]
+    Param
+    (
+        [string] $MailFrom    = 'RD Licensing <support@company.com>',
+
+        [string] $MailTo      = 'support@company.com',
+
+        [string] $MailSubject = 'Remote Desktop Licensing Report',
+
+        [string] $MailServer  = 'smtp.company.com'
+    )
 
     $HTMLStylePath = 'C:\Scripts\HTMLStyling.css'
 
@@ -25,7 +45,7 @@
     If ($psISE)
     {
         $MailTo      = 'admin.name@company.com'
-        $MailSubject = 'Remote Desktop Licensing Report (Test)'
+        $MailSubject = "$( $MailSubject ) (Test)"
     }
 
 #endregion

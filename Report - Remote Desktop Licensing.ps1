@@ -12,7 +12,7 @@
         Run, or schedule, the report on a Remote Desktop license server.
 #>
 
-#region Initial Variables
+#region Set Initial Variables
 
     $MailFrom    = 'RD Licensing <support@company.com>'
     $MailTo      = 'support@company.com'
@@ -145,4 +145,4 @@
 
     Send-MailMessage @SendMailParameters
 
-#endregion Send Email
+#endregion

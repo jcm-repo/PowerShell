@@ -53,6 +53,7 @@
     )
 
 #endregion
+
 #region Set Initial Functions
     
     $Shell = New-Object -ComObject 'WScript.Shell'
@@ -123,6 +124,7 @@
     }
 
 #endregion
+
 #region Select Certificate
     
     $CertificatesParams = @{
@@ -161,6 +163,7 @@
     }
 
 #endregion
+
 #region Select Path
 
     If ( $Path -and !( Test-Path -Path $Path ) )
@@ -180,6 +183,7 @@
     }
 
 #endregion
+
 #region Build File List
 
     $GetFilesParams = @{
@@ -231,6 +235,7 @@
     }
 
 #endregion
+
 #region Sign Files
     
     ForEach ( $File in $SelectedFiles )
@@ -252,6 +257,7 @@
     }
 
 #endregion
+
 #region Show Results
     
     $ResultsParams = @{

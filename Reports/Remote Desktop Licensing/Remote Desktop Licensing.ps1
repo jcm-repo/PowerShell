@@ -39,7 +39,7 @@
         [string] $MailServer  = 'smtp.company.com'
     )
 
-    $HTMLStylePath = 'C:\Scripts\HTMLStyling.css'
+    $HTMLStylePath = "$( $PSScriptRoot )\HTMLStyling.css"
 
     # Send email to alternate address during testing (PowerShell ISE detected)
     If ($psISE)
@@ -49,6 +49,7 @@
     }
 
 #endregion
+
 #region Import Cascading Style Sheet
     
     If ( Test-Path -Path $HTMLStylePath )
@@ -63,6 +64,7 @@
     }
 
 #endregion
+
 #region Get License Information
 
     $LicenseKeyPacks = Get-WmiObject -Class 'Win32_TSLicenseKeyPack'
@@ -73,6 +75,7 @@
         )
 
 #endregion
+
 #region Create License Version Array (Needed for lookups)
     
     $LicenseVersions = @{}
@@ -87,6 +90,7 @@
         }
 
 #endregion
+
 #region Process License KeyPack Information
     
     $HTMLParamters = @{
@@ -121,6 +125,7 @@
         ConvertTo-Html @HTMLParamters
 
 #endregion
+
 #region Process Issuance Information
     
     $HTMLParamters = @{
@@ -146,12 +151,14 @@
         ConvertTo-Html @HTMLParamters
 
 #endregion
+
 #region Prepare Email Body
     
     $MailBody = $HTMLStyle + $LicenseKeyPacksHTML + $IssuedLicensesHTML |
         Out-String
 
 #endregion
+
 #region Send Email
     
     $SendMailParameters = @{

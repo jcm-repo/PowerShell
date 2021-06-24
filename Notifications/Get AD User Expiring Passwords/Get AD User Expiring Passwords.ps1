@@ -16,7 +16,6 @@
 
         -MailServer
             Specify an IP address or DNS name for your SMTP server.
-
 #>
 
 #region Set Initial Variables
@@ -36,6 +35,7 @@
     $NotificationDays = 1, 2, 3, 5, 10, 15
 
 #endregion
+
 #region Set Initial Functions
     
     Function Generate-MailMessage
@@ -55,6 +55,7 @@
     }
 
 #endregion
+
 #region Get User Inforamtion From Active Directory
     
     $ADUsersParams = @{
@@ -84,6 +85,7 @@
         )
 
 #endregion
+
 #region Send Email Notifications
     
     ForEach ( $User in $ADUsers )

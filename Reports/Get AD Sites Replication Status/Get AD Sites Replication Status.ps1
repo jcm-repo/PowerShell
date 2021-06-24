@@ -46,13 +46,14 @@
         $MailSubject = "$( $MailSubject ) (Test)"
     }
 
-    $HTMLStylePath = 'C:\Scripts\HTMLStyling.css'
+    $HTMLStylePath = "$( $PSScriptRoot )\HTMLStyling.css"
 
     $DateFormat = 'dd MMM, HH:mm'
 
     $Domain = ( Get-ADForest ).RootDomain
 
 #endregion
+
 #region Import Cascading Style Sheet
     
     If ( Test-Path -Path $HTMLStylePath )
@@ -67,6 +68,7 @@
     }
 
 #endregion
+
 #region Set Initial Functions
     
     Function Resolve-StatusCode
@@ -98,6 +100,7 @@
     }
 
 #endregion
+
 #region Get Active Directory Replication Metadata
 
     $ADReplicationDataParams = @{
@@ -112,6 +115,7 @@
         )
 
 #endregion
+
 #region Process Active Directory Replication Metadata
 
     $HTMLParams = @{
@@ -145,6 +149,7 @@
         ConvertTo-Html @HTMLParams
 
 #endregion
+
 #region Prepare Email Body
     
     $HTMLStyle = $MailStyle + $ADReplicationMetadataHTML |
@@ -156,6 +161,7 @@
         }
 
 #endregion
+
 #region Send Email
 
     If ( $ADReplicationMetadata.LastReplicationResult -notmatch 0 )
